@@ -17,17 +17,17 @@ export class WeatherComponent implements OnInit {
   pressure: number = 0;
   summary: string = '';
   iconUrl: string ='';
-
-
+  city: string = 'Minneapolis';
+  units: string = 'imperial'
 
   constructor(private weatherService: WeatherService){}
 
   ngOnInit(){
-    this.weatherService.getWeather().subscribe({
+    this.weatherService.getWeather(this.city, this.units).subscribe({
       next: (res)=>{
-        console.log(res);
+        //console.log(res);
         this.myWeather = res;
-        console.log(this.myWeather);
+        //console.log(this.myWeather);
         this.temperature = this.myWeather.main.temp;
         this.feelsLikeTemperature = this.myWeather.main.feels_like;
         this.humidity = this.myWeather.main.humidity;
